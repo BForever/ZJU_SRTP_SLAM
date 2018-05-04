@@ -48,6 +48,7 @@ class Map;
 class Tracking;
 class LocalMapping;
 class LoopClosing;
+class KeyFrameDatabase;
 class System
 {
 public:

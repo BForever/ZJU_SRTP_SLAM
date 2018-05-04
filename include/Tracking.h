@@ -52,6 +52,8 @@ class Map;
 class LocalMapping;
 class LoopClosing;
 class System;
+class KeyFrameDatabase;
+class Frame;
 
 class Tracking
 {  

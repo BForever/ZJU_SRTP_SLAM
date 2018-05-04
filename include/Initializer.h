@@ -27,6 +27,7 @@
 namespace ORB_SLAM2
 {
 
+class Frame;
 // THIS IS THE INITIALIZER FOR MONOCULAR SLAM. NOT USED IN THE STEREO OR RGBD CASE.
 class Initializer
 {

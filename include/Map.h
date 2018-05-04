@@ -34,6 +34,7 @@ namespace ORB_SLAM2
 
 class MapPoint;
 class KeyFrame;
+class Saver;
 
 class Map
 {
@@ -65,14 +66,16 @@ public:
     std::mutex mMutexPointCreation;
 
 protected:
-    std::set<MapPoint*> mspMapPoints;
-    std::set<KeyFrame*> mspKeyFrames;
+    std::set<MapPoint*> mspMapPoints;//
+    std::set<KeyFrame*> mspKeyFrames;//
 
     std::vector<MapPoint*> mvpReferenceMapPoints;
 
     long unsigned int mnMaxKFid;
 
     std::mutex mMutexMap;
+    
+    friend class Saver;
 };
 
 } //namespace ORB_SLAM
