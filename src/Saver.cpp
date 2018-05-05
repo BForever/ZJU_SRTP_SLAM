@@ -10,7 +10,9 @@
 #include <set>
 #include <vector>
 #include <map>
+#include <cstring>
 
+#define SAVER_DEBUG
 #define WRITE(ele, file) fwrite(&(ele),sizeof(ele),1,file)
 #define READ(ele, file) do{ \
         if(fread(&ele,sizeof(ele),1,file)==0) \
@@ -358,6 +360,14 @@ void Saver::loadOneKeyframe(FILE *file)
     READ(mbBad, file);
     READ(mHalfBaseline, file);
 
+#ifdef SAVER_DEBUG
+    char check[8];
+    fread(check,1,8,file);
+    if(strcmp(check,"kfcheck")!=0){
+        printf("Saver error in kfid: %d\n",mnId);
+    }
+#endif
+
 //    Map* mpMap;
     KeyFrame *tmp;
     tmp = new KeyFrame(mnId, mnFrameId, mTimeStamp, mfGridElementWidthInv, mfGridElementHeightInv, fx, fy, cx, cy,
@@ -577,6 +587,15 @@ void Saver::loadOneMapPoint(FILE *file)
     READ(mfMaxDistance, file);
 //
 //    Map *mpMap;
+#ifdef SAVER_DEBUG
+    char check[8];
+    fread(check,1,8,file);
+    if(strcmp(check,"mpcheck")!=0){
+        printf("Saver error in mpid: %d\n",mnId);
+    }
+#endif
+
+    
     MapPoint *mappoint;
     mappoint = new MapPoint(map);
     
@@ -945,6 +964,10 @@ inline void Saver::saveOneKeyframe(KeyFrame *kf, FILE *file)
     WRITE(kf->mbBad, file);
     WRITE(kf->mHalfBaseline, file);
 
+#ifdef SAVER_DEBUG
+    char* check="kfcheck";
+    fwrite(check,1,8,file);
+#endif
 //    Map* mpMap;
 }
 
@@ -1042,6 +1065,12 @@ inline void Saver::saveOneMapPoint(MapPoint *mp, FILE *file)
     WRITE(mp->mfMaxDistance, file);
 //
 //    Map *mpMap;
+#ifdef SAVER_DEBUG
+    char* check="mpcheck";
+    fwrite(check,1,8,file);
+#endif
+
+
 }
 
 void Saver::savetofile()
