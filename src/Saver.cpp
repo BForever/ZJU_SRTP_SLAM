@@ -715,6 +715,8 @@ void Saver::loadfromfile()
     if (file == NULL) {
         printf("no saved file found, skip loading.\n");
         return;
+    }else{
+        printf("Saved file found, starting restore...\n");
     }
     /*
      * Map
@@ -779,7 +781,9 @@ void Saver::loadfromfile()
     }
     
     fclose(file);
+    printf("Map restored, starting reindexing...\n");
     replaceAllIndex();
+    printf("Reindexing finished successfully.\n");
     
 }
 
@@ -1134,5 +1138,6 @@ void Saver::savetofile()
     }
     
     fclose(file);
+    printf("\nMap stored successfully!\n");
 }
 }
