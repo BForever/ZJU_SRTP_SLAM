@@ -49,6 +49,7 @@ class Tracking;
 class LocalMapping;
 class LoopClosing;
 class KeyFrameDatabase;
+class Saver;
 class System
 {
 public:
@@ -162,6 +163,9 @@ private:
     
     // point cloud mapping
     shared_ptr<PointCloudMapping>  mpPointCloudMapping;
+    
+    // Saver
+    Saver* saver;
 };
 
 }// namespace ORB_SLAM

@@ -759,8 +759,8 @@ void Saver::loadfromfile()
         KB->mvInvertedFile.push_back(l);
     }
     
-    
     fclose(file);
+    replaceAllIndex();
     
 }
 
